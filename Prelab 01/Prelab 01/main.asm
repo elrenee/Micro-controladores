@@ -1,0 +1,97 @@
+;
+; Prelab 01.asm
+; Created: 2/02/2025 16:12:04
+; Author : RENÉ GONZÁLEZ, 23365
+;
+.include "M328PDEF.inc"
+
+.cseg //lo que sigue es codigo
+.org 0x0000
+// coonfigurams la pila
+LDI R16, LOW(RAMEND)
+OUT SPL, R16
+LDI R16, HIGH(RAMEND)
+OUT SPH, R16
+//configuramos el MCU
+SETUP:
+	//Seteamos los pines de entrada y salida
+	LDI R16, 0x00
+	OUT DDRD, R16  //Seteamos el puerto D como entrada 
+	LDI R16, 0Xff
+	OUT PORTD, R16 //HABLITAMOS PULL-UP
+
+	LDI		R18,0X00 //CONTADOR UNO A 0
+	LDI		R17, 0x00 //Contador DOS A 0
+
+Loop:
+	SBIS	PIND, 1 
+	CALL	MAIN
+	SBIS	PIND, 2
+	CALL	MAIN2
+	SBIS	PIND, 3
+	CALL	MAIN3
+	SBIS	PIND, 4
+	CALL	MAIN4
+	DEFAULT:
+		JMP Loop
+
+Main:
+	CALL	TIEMPO
+	IN		R16, PIND
+	CPI		R16, 0xFE
+	BREQ	SUMAR
+	SUMAR:
+		SBRS	R16, 0
+		INC		R18
+	RET
+
+Main2:
+	CALL	TIEMPO
+	IN		R16, PIND
+	CPI		R16, 0xFD
+	BREQ	RESTAR
+	RESTAR:
+		SBRS	R16, 1
+		DEC		R18
+	RET
+
+MAIN3:
+	CALL	TIEMPO
+	IN		R16, PIND
+	CPI		R16, 0xFB
+	BREQ	SUMAR2
+	SUMAR2:
+		SBRS	R16, 2     
+		INC R17
+	RET
+
+MAIN4:
+	CALL	TIEMPO
+	IN		R16, PIND
+	CPI		R16, 0xF7
+	BREQ	RESTAR2
+	RESTAR2:
+		SBRS	R16, 3   
+		DEC R17
+	RET
+
+
+
+
+TIEMPO:
+	LDI		R20, 0xFF
+SUB_DELAY1:
+	DEC		R20
+	CPI		R20, 0
+	BRNE	SUB_DELAY1
+	LDI		R20, 0xFF
+SUB_DELAY2:
+	DEC		R20
+	CPI		R20, 0
+	BRNE	SUB_DELAY2
+	LDI		R20, 0xFF
+SUB_DELAY3:
+	DEC		R20
+	CPI		R20, 0
+	BRNE	SUB_DELAY3
+	RET
