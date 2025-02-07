@@ -1,0 +1,52 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\Debug\Laboratorio 1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Laboratorio 1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Laboratorio 1.map</FILE>
+  <FILE>Laboratorio 1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <SETUP><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>15</LINE></SETUP>
+  <Loop><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>32</LINE></Loop>
+  <MAIN><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>48</LINE></MAIN>
+  <MAIN2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>55</LINE></MAIN2>
+  <MAIN3><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>62</LINE></MAIN3>
+  <MAIN4><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>69</LINE></MAIN4>
+  <DEFAULT><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>45</LINE></DEFAULT>
+  <TIEMPO><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>147</LINE></TIEMPO>
+  <SUMAR><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>77</LINE></SUMAR>
+  <RESTAR><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>94</LINE></RESTAR>
+  <SUMAR2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>111</LINE></SUMAR2>
+  <RESTAR2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>129</LINE></RESTAR2>
+  <evitar_carry><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>84</LINE></evitar_carry>
+  <LIMPIAR><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>88</LINE></LIMPIAR>
+  <Evitar_underflow><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>101</LINE></Evitar_underflow>
+  <CARGAR_VALOR><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>105</LINE></CARGAR_VALOR>
+  <EVITAR_CARRY2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>120</LINE></EVITAR_CARRY2>
+  <LIMPIAR2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>124</LINE></LIMPIAR2>
+  <EVITAR_UNDERFLOW2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>138</LINE></EVITAR_UNDERFLOW2>
+  <CARGAR_VALOR2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>142</LINE></CARGAR_VALOR2>
+  <SUB_DELAY1><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>149</LINE></SUB_DELAY1>
+  <SUB_DELAY2><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>154</LINE></SUB_DELAY2>
+  <SUB_DELAY3><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>159</LINE></SUB_DELAY3>
+  <SUB_DELAY4><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>164</LINE></SUB_DELAY4>
+  <SUB_DELAY5><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm</FILE><LINE>169</LINE></SUB_DELAY5>
+ </LABELS>
+</ASSEMBLER_INFO>
