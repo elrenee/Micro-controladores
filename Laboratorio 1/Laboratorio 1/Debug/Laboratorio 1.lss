@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Fri Feb 07 13:33:38 2025
+AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Fri Feb 07 21:11:34 2025
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm(5): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1054,153 +1054,189 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000009 e000                      	LDI R16, 0X00
 00000a b905                      	OUT PORTB, R16// CONFIGURAMOS 0V EN CADA PIN DEL PUERTO B
                                  
+00000b ef0f                      	LDI R16, 0xFF
+00000c b907                      	OUT	DDRC, R16//SETEAMOS EL PUERTO C COMO SALIDA
+00000d e000                      	LDI R16, 0x00
+00000e b908                      	OUT PORTC, R16 //0V EN EL PUERTO C
                                  
-00000b e020                      	LDI		R18,0X00 //CONTADOR UNO A 0
-00000c e010                      	LDI		R17, 0x00 //Contador DOS A 0
-00000d ef3f                      	LDI		R19, 0XFF // ESTADO ACTUAL 
-00000e e040                      	LDI		R20, 0x00// Salida contador 1 y 2
+                                 
+00000f e020                      	LDI		R18,0X00 //CONTADOR UNO A 0
+000010 e010                      	LDI		R17, 0x00 //Contador DOS A 0
+000011 ef3f                      	LDI		R19, 0XFF // ESTADO ACTUAL 
+000012 e060                      	LDI		R22, 0x00// Salida contador 1 y 2
+000013 e050                      	LDI		R21, 0X00 //resultado de la suma
                                  
                                  Loop:
-00000f b109                      	IN		R16, PIND
-000010 1730                      	CP 		R19, R16
-000011 f3e9                      	BREQ	Loop
-000012 2f30                      	MOV		R19, R16
-000013 9b48                      	SBIS	PIND, 0
-000014 940e 0021                 	CALL	MAIN
-000016 9b49                      	SBIS	PIND, 1
-000017 940e 0028                 	CALL	MAIN2
-000019 9b4a                      	SBIS	PIND, 2
-00001a 940e 002f                 	CALL	MAIN3
-00001c 9b4b                      	SBIS	PIND, 3
-00001d 940e 0036                 	CALL	MAIN4
+000014 b109                      	IN		R16, PIND
+000015 1730                      	CP 		R19, R16
+000016 f3e9                      	BREQ	Loop
+000017 2f30                      	MOV		R19, R16
+000018 9b48                      	SBIS	PIND, 0
+000019 940e 0029                 	CALL	MAIN
+00001b 9b49                      	SBIS	PIND, 1
+00001c 940e 0030                 	CALL	MAIN2
+00001e 9b4a                      	SBIS	PIND, 2
+00001f 940e 0037                 	CALL	MAIN3
+000021 9b4b                      	SBIS	PIND, 3
+000022 940e 003e                 	CALL	MAIN4
+000024 9b4c                      	SBIS	PIND, 4
+000025 940e 0045                 	CALL	RESULTADO
                                  	DEFAULT:
-00001f 940c 000f                 		JMP Loop
+000027 940c 0014                 		JMP Loop
                                  
                                  Main:
-000021 940e 0071                 	CALL	TIEMPO
-000023 b109                      	IN		R16, PIND
-000024 9b48                      	SBIS	PIND, 0
-000025 940e 003d                 	CALL	SUMAR
-000027 9508                      	RET
+000029 940e 008f                 	CALL	TIEMPO
+00002b b109                      	IN		R16, PIND
+00002c 9b48                      	SBIS	PIND, 0
+00002d 940e 0053                 	CALL	SUMAR
+00002f 9508                      	RET
                                  
                                  Main2:
-000028 940e 0071                 	CALL	TIEMPO
-00002a b109                      	IN		R16, PIND
-00002b 9b49                      	SBIS	PIND, 1
-00002c 940e 0049                 	CALL	RESTAR
-00002e 9508                      	RET
+000030 940e 008f                 	CALL	TIEMPO
+000032 b109                      	IN		R16, PIND
+000033 9b49                      	SBIS	PIND, 1
+000034 940e 0061                 	CALL	RESTAR
+000036 9508                      	RET
                                  
                                  MAIN3:
-00002f 940e 0071                 	CALL	TIEMPO
-000031 b109                      	IN		R16, PIND
-000032 9b4a                      	SBIS	PIND, 2
-000033 940e 0055                 	CALL	SUMAR2
-000035 9508                      	RET
+000037 940e 008f                 	CALL	TIEMPO
+000039 b109                      	IN		R16, PIND
+00003a 9b4a                      	SBIS	PIND, 2
+00003b 940e 006f                 	CALL	SUMAR2
+00003d 9508                      	RET
                                  
                                  MAIN4:
-000036 940e 0071                 	CALL	TIEMPO
-000038 b109                      	IN		R16, PIND
-000039 9b4b                      	SBIS	PIND, 3
-00003a 940e 0063                 	CALL	RESTAR2
-00003c 9508                      	RET
+00003e 940e 008f                 	CALL	TIEMPO
+000040 b109                      	IN		R16, PIND
+000041 9b4b                      	SBIS	PIND, 3
+000042 940e 007f                 	CALL	RESTAR2
+000044 9508                      	RET
+                                 
+                                 RESULTADO:
+000045 940e 008f                 		CALL	TIEMPO
+000047 b109                      		IN		R16, PIND
+000048 9b4c                      		SBIS	PIND, 4
+000049 940e 004c                 		CALL	SUMAR_AMBOS
+00004b 9508                      		RET
+                                 
+                                 
+                                 
+                                 
+                                 SUMAR_AMBOS:
+00004c 9512                      		SWAP	R17
+00004d 2755                      		CLR		R21
+00004e 0f51                      		ADD		R21, R17
+00004f 0f52                      		ADD		R21, R18
+000050 9512                      		SWAP	R17
+000051 b958                      		OUT		PORTC, R21
+000052 9508                      		RET
+                                 		 
                                  
                                  
                                  SUMAR:
-00003d ff00                      		SBRS	R16, 0
-00003e 9523                      		INC		R18
-00003f 940e 0044                 		CALL	evitar_carry
-000041 0f42                      		ADD		R20, R18
-000042 b945                      		OUT		PORTB, R20
-000043 9508                      		RET
+000053 ff00                      		SBRS	R16, 0
+000054 9523                      		INC		R18
+000055 940e 005c                 		CALL	evitar_carry
+000057 2766                      		CLR		R22
+000058 0f62                      		ADD		R22, R18
+000059 0f61                      		ADD		R22,R17
+00005a b965                      		OUT		PORTB, R22
+00005b 9508                      		RET
                                  evitar_carry:
-000044 3120                      		CPI		R18, 0x10
-000045 f009                      		BREQ	LIMPIAR
-000046 9508                      		RET
+00005c 3120                      		CPI		R18, 0x10
+00005d f009                      		BREQ	LIMPIAR
+00005e 9508                      		RET
                                  LIMPIAR:
-000047 2722                      		CLR		R18
-000048 9508                      		RET
+00005f 2722                      		CLR		R18
+000060 9508                      		RET
                                  
                                  
                                  
                                  RESTAR:
-000049 ff01                      		SBRS	R16, 1
-00004a 952a                      		DEC		R18
-00004b 940e 0050                 		CALL	Evitar_underflow
-00004d 0f42                      		ADD		R20, R18
-00004e b945                      		OUT		PORTB, R20
-00004f 9508                      		RET
+000061 ff01                      		SBRS	R16, 1
+000062 952a                      		DEC		R18
+000063 940e 006a                 		CALL	Evitar_underflow
+000065 2766                      		CLR		R22
+000066 0f62                      		ADD		R22, R18
+000067 0f61                      		ADD		R22,R17
+000068 b965                      		OUT		PORTB, R22
+000069 9508                      		RET
                                  Evitar_underflow:
-000050 3f2f                      		CPI	R18, 0XFF
-000051 f009                      		BREQ CARGAR_VALOR
-000052 9508                      		RET
+00006a 3f2f                      		CPI	R18, 0XFF
+00006b f009                      		BREQ CARGAR_VALOR
+00006c 9508                      		RET
                                  CARGAR_VALOR:
-000053 e02f                      		LDI	R18, 0X0F
-000054 9508                      		RET
+00006d e02f                      		LDI	R18, 0X0F
+00006e 9508                      		RET
                                  
                                  
                                  
                                  SUMAR2:
-000055 ff02                      		SBRS	R16, 2 
-000056 9512                      		SWAP	R17    
-000057 9513                      		INC		R17
-000058 940e 005e                 		CALL	EVITAR_CARRY2
-00005a 9512                      		SWAP	R17
-00005b 0f41                      		ADD		R20, R17
-00005c b945                      		OUT		PORTB, R20
-00005d 9508                      		RET
+00006f ff02                      		SBRS	R16, 2 
+000070 9512                      		SWAP	R17    
+000071 9513                      		INC		R17
+000072 940e 007a                 		CALL	EVITAR_CARRY2
+000074 9512                      		SWAP	R17
+000075 2766                      		CLR		R22
+000076 0f61                      		ADD		R22, R17
+000077 0f62                      		ADD		R22, R18
+000078 b965                      		OUT		PORTB, R22
+000079 9508                      		RET
                                  EVITAR_CARRY2:
-00005e 3110                      		CPI R17, 0X10
-00005f f009                      		BREQ LIMPIAR2
-000060 9508                      		RET
+00007a 3110                      		CPI R17, 0X10
+00007b f009                      		BREQ LIMPIAR2
+00007c 9508                      		RET
                                  LIMPIAR2:
-000061 2711                      		CLR R17
-000062 9508                      		RET
+00007d 2711                      		CLR R17
+00007e 9508                      		RET
                                  
                                  
                                  RESTAR2:
-000063 ff03                      		SBRS	R16, 3   
-000064 9512                      		SWAP	R17
-000065 951a                      		DEC		R17
-000066 940e 006c                 		CALL	EVITAR_UNDERFLOW2
-000068 9512                      		SWAP	R17
-000069 0f41                      		ADD		R20, R17
-00006a b945                      		OUT		PORTB,  R20
-00006b 9508                      		RET
+00007f ff03                      		SBRS	R16, 3   
+000080 9512                      		SWAP	R17
+000081 951a                      		DEC		R17
+000082 940e 008a                 		CALL	EVITAR_UNDERFLOW2
+000084 9512                      		SWAP	R17
+000085 2766                      		CLR		R22
+000086 0f61                      		ADD		R22, R17
+000087 0f62                      		ADD		R22, R18
+000088 b965                      		OUT		PORTB,  R22
+000089 9508                      		RET
                                  EVITAR_UNDERFLOW2:
-00006c 3f1f                      		CPI		R17, 0XFF
-00006d f009                      		BREQ	CARGAR_VALOR2
-00006e 9508                      		RET
+00008a 3f1f                      		CPI		R17, 0XFF
+00008b f009                      		BREQ	CARGAR_VALOR2
+00008c 9508                      		RET
                                  CARGAR_VALOR2:
-00006f e01f                      		LDI R17,0X0F
-000070 9508                      		RET
+00008d e01f                      		LDI R17,0X0F
+00008e 9508                      		RET
                                  
                                  
                                  TIEMPO:
-000071 ef4f                      	LDI		R20, 0xFF
+00008f ef4f                      	LDI		R20, 0xFF
                                  SUB_DELAY1:
-000072 954a                      	DEC		R20
-000073 3040                      	CPI		R20, 0
-000074 f7e9                      	BRNE	SUB_DELAY1
-000075 ef4f                      	LDI		R20, 0xFF
+000090 954a                      	DEC		R20
+000091 3040                      	CPI		R20, 0
+000092 f7e9                      	BRNE	SUB_DELAY1
+000093 ef4f                      	LDI		R20, 0xFF
                                  SUB_DELAY2:
-000076 954a                      	DEC		R20
-000077 3040                      	CPI		R20, 0
-000078 f7e9                      	BRNE	SUB_DELAY2
-000079 ef4f                      	LDI		R20, 0xFF
+000094 954a                      	DEC		R20
+000095 3040                      	CPI		R20, 0
+000096 f7e9                      	BRNE	SUB_DELAY2
+000097 ef4f                      	LDI		R20, 0xFF
                                  SUB_DELAY3:
-00007a 954a                      	DEC		R20
-00007b 3040                      	CPI		R20, 0
-00007c f7e9                      	BRNE	SUB_DELAY3
-00007d ef4f                      	LDI		R20, 0xFF
+000098 954a                      	DEC		R20
+000099 3040                      	CPI		R20, 0
+00009a f7e9                      	BRNE	SUB_DELAY3
+00009b ef4f                      	LDI		R20, 0xFF
                                  SUB_DELAY4:
-00007e 954a                      	DEC		R20
-00007f 3040                      	CPI		R20, 0
-000080 f7e9                      	BRNE	SUB_DELAY4
-000081 ef4f                      	LDI		R20, 0xFF
+00009c 954a                      	DEC		R20
+00009d 3040                      	CPI		R20, 0
+00009e f7e9                      	BRNE	SUB_DELAY4
+00009f ef4f                      	LDI		R20, 0xFF
                                  SUB_DELAY5:
-000082 954a                      	DEC		R20
-000083 3040                      	CPI		R20, 0
-000084 f7e9                      	BRNE	SUB_DELAY5
+0000a0 954a                      	DEC		R20
+0000a1 3040                      	CPI		R20, 0
+0000a2 f7e9                      	BRNE	SUB_DELAY5
 
 
 RESOURCE USE INFORMATION
@@ -1220,37 +1256,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  22 r17:  13 r18:   9 r19:   3 r20:  24 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  27 r17:  18 r18:  12 r19:   3 r20:  15 
+r21:   5 r22:  17 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 5 out of 35 (14.3%)
+Registers used: 7 out of 35 (20.0%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   4 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :  10 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   5 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :  16 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :  19 cbi   :   0 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   7 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   1 cpc   :   0 
 cpi   :   9 cpse  :   0 dec   :   7 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   5 inc   :   2 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :  16 lds   :   0 lpm   :   0 lsl   :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   6 inc   :   2 jmp   :   1 
+ld    :   0 ldd   :   0 ldi   :  19 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   1 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  10 pop   :   0 
-push  :   0 rcall :   0 ret   :  17 reti  :   0 rjmp  :   0 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   8 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  13 pop   :   0 
+push  :   0 rcall :   0 ret   :  19 reti  :   0 rjmp  :   0 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :  10 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   4 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
-sub   :   0 subi  :   0 swap  :   4 tst   :   0 wdr   :   0 
+sub   :   0 subi  :   0 swap  :   6 tst   :   0 wdr   :   0 
 Instructions used: 18 out of 113 (15.9%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00010c    268      0    268   32768   0.8%
+[.cseg] 0x000000 0x000148    328      0    328   32768   1.0%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
