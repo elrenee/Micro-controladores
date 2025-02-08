@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Fri Feb 07 21:11:34 2025
+AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Fri Feb 07 21:33:26 2025
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm(5): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1045,14 +1045,15 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
                                  //configuramos el MCU
                                  SETUP:
                                  	//Seteamos los pines de entrada y salida
+                                 
 000004 e000                      	LDI R16, 0x00
-000005 b90a                      	OUT DDRD, R16  //Seteamos el puerto D como entrada 
+000005 b904                      	OUT DDRB, R16  //Seteamos el puerto B como entrada 
 000006 ef0f                      	LDI R16, 0Xff
-000007 b90b                      	OUT PORTD, R16 //HABLITAMOS PULL-UP
+000007 b905                      	OUT PORTB, R16 //HABLITAMOS PULL-UP
                                  	
-000008 b904                      	OUT DDRB, R16//SETEAMOS EL PUERTO B COMO SALIDA
+000008 b90a                      	OUT DDRD, R16//SETEAMOS EL PUERTO D COMO SALIDA
 000009 e000                      	LDI R16, 0X00
-00000a b905                      	OUT PORTB, R16// CONFIGURAMOS 0V EN CADA PIN DEL PUERTO B
+00000a b90b                      	OUT PORTD, R16// CONFIGURAMOS 0V EN CADA PIN DEL PUERTO D
                                  
 00000b ef0f                      	LDI R16, 0xFF
 00000c b907                      	OUT	DDRC, R16//SETEAMOS EL PUERTO C COMO SALIDA
@@ -1067,55 +1068,55 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000013 e050                      	LDI		R21, 0X00 //resultado de la suma
                                  
                                  Loop:
-000014 b109                      	IN		R16, PIND
+000014 b103                      	IN		R16, PINB
 000015 1730                      	CP 		R19, R16
 000016 f3e9                      	BREQ	Loop
 000017 2f30                      	MOV		R19, R16
-000018 9b48                      	SBIS	PIND, 0
+000018 9b18                      	SBIS	PINB, 0
 000019 940e 0029                 	CALL	MAIN
-00001b 9b49                      	SBIS	PIND, 1
+00001b 9b19                      	SBIS	PINB, 1
 00001c 940e 0030                 	CALL	MAIN2
-00001e 9b4a                      	SBIS	PIND, 2
+00001e 9b1a                      	SBIS	PINB, 2
 00001f 940e 0037                 	CALL	MAIN3
-000021 9b4b                      	SBIS	PIND, 3
+000021 9b1b                      	SBIS	PINB, 3
 000022 940e 003e                 	CALL	MAIN4
-000024 9b4c                      	SBIS	PIND, 4
+000024 9b1c                      	SBIS	PINB, 4
 000025 940e 0045                 	CALL	RESULTADO
                                  	DEFAULT:
 000027 940c 0014                 		JMP Loop
                                  
                                  Main:
 000029 940e 008f                 	CALL	TIEMPO
-00002b b109                      	IN		R16, PIND
-00002c 9b48                      	SBIS	PIND, 0
+00002b b103                      	IN		R16, PINB
+00002c 9b18                      	SBIS	PINB, 0
 00002d 940e 0053                 	CALL	SUMAR
 00002f 9508                      	RET
                                  
                                  Main2:
 000030 940e 008f                 	CALL	TIEMPO
-000032 b109                      	IN		R16, PIND
-000033 9b49                      	SBIS	PIND, 1
+000032 b103                      	IN		R16, PINB
+000033 9b19                      	SBIS	PINB, 1
 000034 940e 0061                 	CALL	RESTAR
 000036 9508                      	RET
                                  
                                  MAIN3:
 000037 940e 008f                 	CALL	TIEMPO
-000039 b109                      	IN		R16, PIND
-00003a 9b4a                      	SBIS	PIND, 2
+000039 b103                      	IN		R16, PINB
+00003a 9b1a                      	SBIS	PINB, 2
 00003b 940e 006f                 	CALL	SUMAR2
 00003d 9508                      	RET
                                  
                                  MAIN4:
 00003e 940e 008f                 	CALL	TIEMPO
-000040 b109                      	IN		R16, PIND
-000041 9b4b                      	SBIS	PIND, 3
+000040 b103                      	IN		R16, PINB
+000041 9b1b                      	SBIS	PINB, 3
 000042 940e 007f                 	CALL	RESTAR2
 000044 9508                      	RET
                                  
                                  RESULTADO:
 000045 940e 008f                 		CALL	TIEMPO
-000047 b109                      		IN		R16, PIND
-000048 9b4c                      		SBIS	PIND, 4
+000047 b103                      		IN		R16, PINB
+000048 9b1c                      		SBIS	PINB, 4
 000049 940e 004c                 		CALL	SUMAR_AMBOS
 00004b 9508                      		RET
                                  
@@ -1140,7 +1141,7 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000057 2766                      		CLR		R22
 000058 0f62                      		ADD		R22, R18
 000059 0f61                      		ADD		R22,R17
-00005a b965                      		OUT		PORTB, R22
+00005a b96b                      		OUT		PORTD, R22
 00005b 9508                      		RET
                                  evitar_carry:
 00005c 3120                      		CPI		R18, 0x10
@@ -1159,7 +1160,7 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000065 2766                      		CLR		R22
 000066 0f62                      		ADD		R22, R18
 000067 0f61                      		ADD		R22,R17
-000068 b965                      		OUT		PORTB, R22
+000068 b96b                      		OUT		PORTD, R22
 000069 9508                      		RET
                                  Evitar_underflow:
 00006a 3f2f                      		CPI	R18, 0XFF
@@ -1180,7 +1181,7 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000075 2766                      		CLR		R22
 000076 0f61                      		ADD		R22, R17
 000077 0f62                      		ADD		R22, R18
-000078 b965                      		OUT		PORTB, R22
+000078 b96b                      		OUT		PORTD, R22
 000079 9508                      		RET
                                  EVITAR_CARRY2:
 00007a 3110                      		CPI R17, 0X10
@@ -1200,7 +1201,7 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
 000085 2766                      		CLR		R22
 000086 0f61                      		ADD		R22, R17
 000087 0f62                      		ADD		R22, R18
-000088 b965                      		OUT		PORTB,  R22
+000088 b96b                      		OUT		PORTD,  R22
 000089 9508                      		RET
                                  EVITAR_UNDERFLOW2:
 00008a 3f1f                      		CPI		R17, 0XFF
