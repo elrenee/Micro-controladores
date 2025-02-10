@@ -24,7 +24,10 @@
  </OUTPUT_FILES>
  <LABELS>
   <SETUP><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>17</LINE></SETUP>
-  <INICIAR_TMR0><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>46</LINE></INICIAR_TMR0>
-  <MAIN_LOOP><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>34</LINE></MAIN_LOOP>
+  <INICIAR_TMR0><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>61</LINE></INICIAR_TMR0>
+  <MAIN_LOOP><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>35</LINE></MAIN_LOOP>
+  <CONTADOR_4BITS><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>47</LINE></CONTADOR_4BITS>
+  <ANTIOVERFLOW><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>52</LINE></ANTIOVERFLOW>
+  <LIMPIAR><FILE>C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Prelab 02\Prelab 02\main.asm</FILE><LINE>56</LINE></LIMPIAR>
  </LABELS>
 </ASSEMBLER_INFO>
