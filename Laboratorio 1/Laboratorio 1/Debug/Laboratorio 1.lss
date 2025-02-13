@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Fri Feb 07 21:33:26 2025
+AVRASM ver. 2.2.8  C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm Mon Feb 10 18:32:27 2025
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laboratorio 1\main.asm(5): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1213,31 +1213,15 @@ C:\Users\Barbaritos\Documents\GitHub\Micro-controladores\Laboratorio 1\Laborator
                                  
                                  
                                  TIEMPO:
-00008f ef4f                      	LDI		R20, 0xFF
+00008f e040                      	LDI		R20, 0x00
+000090 e060                      	LDI		R22, 0
                                  SUB_DELAY1:
-000090 954a                      	DEC		R20
-000091 3040                      	CPI		R20, 0
-000092 f7e9                      	BRNE	SUB_DELAY1
-000093 ef4f                      	LDI		R20, 0xFF
-                                 SUB_DELAY2:
-000094 954a                      	DEC		R20
-000095 3040                      	CPI		R20, 0
-000096 f7e9                      	BRNE	SUB_DELAY2
-000097 ef4f                      	LDI		R20, 0xFF
-                                 SUB_DELAY3:
-000098 954a                      	DEC		R20
-000099 3040                      	CPI		R20, 0
-00009a f7e9                      	BRNE	SUB_DELAY3
-00009b ef4f                      	LDI		R20, 0xFF
-                                 SUB_DELAY4:
-00009c 954a                      	DEC		R20
-00009d 3040                      	CPI		R20, 0
-00009e f7e9                      	BRNE	SUB_DELAY4
-00009f ef4f                      	LDI		R20, 0xFF
-                                 SUB_DELAY5:
-0000a0 954a                      	DEC		R20
-0000a1 3040                      	CPI		R20, 0
-0000a2 f7e9                      	BRNE	SUB_DELAY5
+000091 9543                      	INC		R20
+000092 3040                      	CPI		R20, 0
+000093 f7e9                      	BRNE	SUB_DELAY1
+000094 9563                      	INC		R22
+000095 3060                      	CPI		R22, 0
+000096 f7d1                      	BRNE	SUB_DELAY1
 
 
 RESOURCE USE INFORMATION
@@ -1257,8 +1241,8 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  27 r17:  18 r18:  12 r19:   3 r20:  15 
-r21:   5 r22:  17 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  27 r17:  18 r18:  12 r19:   3 r20:   3 
+r21:   5 r22:  20 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
 Registers used: 7 out of 35 (20.0%)
 
@@ -1267,13 +1251,13 @@ Registers used: 7 out of 35 (20.0%)
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   5 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :  19 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   7 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   1 cpc   :   0 
-cpi   :   9 cpse  :   0 dec   :   7 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   6 inc   :   2 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :  19 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   6 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   6 inc   :   4 jmp   :   1 
+ld    :   0 ldd   :   0 ldi   :  16 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   1 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  13 pop   :   0 
 push  :   0 rcall :   0 ret   :  19 reti  :   0 rjmp  :   0 rol   :   0 
@@ -1287,7 +1271,7 @@ Instructions used: 18 out of 113 (15.9%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000148    328      0    328   32768   1.0%
+[.cseg] 0x000000 0x000130    304      0    304   32768   0.9%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

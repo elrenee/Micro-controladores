@@ -1,0 +1,6 @@
+Video explicatyivo
+https://youtu.be/r7aOu699ctE
+
+
+GITHUB
+https://github.com/elrenee/Micro-controladores/blame/adc8e0bbb50e9486e8c79fe22d98e5cc0e5e54aa/Laboratorio%201/Laboratorio%201/main.asm
