@@ -12,7 +12,7 @@
 	uint16_t servo3;
 	uint16_t servo4;
 } ServoConfig;
-volatile uint8_t current_config = 0; //para las 4 posiciones a guardar. volatile int contador=0;uint16_t conversion1=0;uint16_t servo1=0;uint16_t conversion2=0;uint16_t servo2=0;uint16_t conversion3=0;uint16_t servo3=0;uint16_t conversion4=0;uint16_t servo4=0;volatile int modo=1; //Modo manual, guardado, adafuit./****************************************/// Function prototypesvoid setup();void writeEEPROM(uint16_t addr, const void *data, uint8_t len);void saveCurrentConfiguration();/****************************************/// Main Functionint main(){		setup();	while (1)
+volatile uint8_t current_config = 0; //para las 4 posiciones a guardar. volatile int contador=0;uint16_t conversion1=0;uint16_t servo1=0;uint16_t conversion2=0;uint16_t servo2=0;uint16_t conversion3=0;uint16_t servo3=0;uint16_t conversion4=0;uint16_t servo4=0;volatile int modo=1; //Modo manual, guardado, adafuit.uint8_t load_index = 0;/****************************************/// Function prototypesvoid setup();void writeEEPROM(uint16_t addr, const void *data, uint8_t len);void saveCurrentConfiguration();void loadCurrentConfiguration();void loadConfiguration(uint8_t config_num);/****************************************/// Main Functionint main(){		setup();	while (1)
 	{
 		switch(modo)
 		{
@@ -36,9 +36,25 @@ volatile uint8_t current_config = 0; //para las 4 posiciones a guardar. volatil
 						while(!(PINC & (1 << PINC1)));
 					}
 				}
+				else if (!(PINC & (1 << PINC0))) // Botón PC0 presionado (Cargar)
+				{
+					_delay_ms(50);
+					if (!(PINC & (1 << PINC0)))
+					{
+						loadCurrentConfiguration();
+						while(!(PINC & (1 << PINC0))); // Esperar a soltar
+						for(uint8_t i = 0; i <= load_index+1; i++)
+						{
+							PORTB |= (1 << PORTB5);
+							_delay_ms(200);
+							PORTB &= ~(1 << PORTB5);
+							_delay_ms(200);
+						}
+					}
+				}
 				break;
 		}
-	}}/****************************************/// NON-Interrupt subroutinesvoid setup(){	cli();	DDRB |= (1 << DDB4);	DDRC=0;	PORTC=0; //Puerto c como entrada, estaran los ADC?s	PORTC |= (1 << PORTC2);// PUll up en pc2	PCICR |= (1<<PCIE1);	PCMSK1 |= (1<<PCINT10); //PINCHANGE PC2	initADC();	initPWM();	initPWM2();	ADCSRA|=(1<<ADSC);	current_config =0;	sei();}void writeEEPROM(uint16_t addr, const void *data, uint8_t len) 
+	}}/****************************************/// NON-Interrupt subroutinesvoid setup(){	cli();	DDRB |= (1 << DDB4);	DDRC=0;	PORTC=0; //Puerto c como entrada, estaran los ADC?s	PORTC |= (1 << PORTC2)|(1<<PORTC1)|(1<<PORTC0);// PUll up en pc2	PCICR |= (1<<PCIE1);	PCMSK1 |= (1<<PCINT10); //PINCHANGE PC2	initADC();	initPWM();	initPWM2();	ADCSRA|=(1<<ADSC);	current_config =0;	sei();}void writeEEPROM(uint16_t addr, const void *data, uint8_t len) 
 {
 	uint8_t *p = (uint8_t*)data;
 	for(uint8_t i = 0; i < len; i++) 
@@ -68,9 +84,31 @@ volatile uint8_t current_config = 0; //para las 4 posiciones a guardar. volatil
 	writeEEPROM(eeprom_addr, &config, sizeof(ServoConfig));
 	// Actualizar ?ndice (circular 0-3)
 	current_config = (current_config + 1) % NUM_CONFIGS;
-}/**************************************/// Interrupt routinesISR(PCINT1_vect){	if (!(PINC & (1 << PORTC2)))
+}void loadCurrentConfiguration()
+{
+	loadConfiguration(load_index);
+	load_index = (load_index + 1) % NUM_CONFIGS; // Rotar entre 0-3
+}
+void loadConfiguration(uint8_t config_num)
+{
+	if(config_num >= NUM_CONFIGS) return;
+	ServoConfig config;
+	uint16_t eeprom_addr = config_num * sizeof(ServoConfig);
+	eeprom_read_block(&config, (void*)eeprom_addr, sizeof(ServoConfig));
+	
+	servo1 = config.servo1;
+	servo2 = config.servo2;
+	servo3 = config.servo3;
+	servo4 = config.servo4;
+	
+	// Mover servos 
+	movservo1(servo1);
+	movservo2(servo2);
+	movservo3(servo3);
+	movservo4(servo4);
+}/**************************************/// Interrupt routinesISR(PCINT1_vect){	if (!(PINC & (1 << PORTC2)))
 	{ 
-		_delay_ms(50); // Anti-rebote (Preguntar a pedro)
+		_delay_ms(100); // Anti-rebote (Preguntar a pedro)
 		if (!(PINC & (1 << PORTC2))) 
 		{
 			modo = 3-modo; // Reiniciar si supera el n?mero de modos
